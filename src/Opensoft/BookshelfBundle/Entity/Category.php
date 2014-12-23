@@ -14,6 +14,7 @@ class Category
     /**
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @var integer
      */
     protected $id;

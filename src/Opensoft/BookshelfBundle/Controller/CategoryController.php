@@ -2,10 +2,11 @@
 
 namespace Opensoft\BookshelfBundle\Controller;
 
+use Opensoft\BookshelfBundle\Entity\Category;
+use Opensoft\BookshelfBundle\Form\CategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Acme\DemoBundle\Form\ContactType;
 
 // these import the "@Route" and "@Template" annotations
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -26,10 +27,31 @@ class CategoryController extends Controller
     }
 
     /**
+     * @Route("/category/add", name="category_add")
+     * @Template()
+     */
+    public function addAction(Request $request)
+    {
+        $category = new Category();
+        $form = $this->createForm(new CategoryType(), $category);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($category);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('category_list'));
+        }
+
+        return ['form' => $form->createView()];
+    }
+
+    /**
      * @Route("/category/{id}/edit", name="category_edit")
      * @Template()
      */
-    public function addAction()
+    public function editAction($id)
     {
 
     }
