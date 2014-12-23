@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Bookshelf{% endblock %}</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{{ asset('bundles/opensoftbookshelf/css/style.css') }}" />
+        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        {% include 'OpensoftBookshelfBundle::mainMenu.html.twig' %}
+
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+
+        <div class="navbar navbar-inverse navbar-fixed-bottom row-fluid">
+            <div class="container bookshelf-footer">
+                 &copy Opensoft
+            </div>
+        </div>
+    </body>
+</html>

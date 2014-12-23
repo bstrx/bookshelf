@@ -1,0 +1,3 @@
+bookshelf:
+    resource: @OpensoftBookshelfBundle/Controller/
+    type:     annotation

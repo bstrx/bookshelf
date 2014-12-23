@@ -1,0 +1,49 @@
+{% extends "OpensoftBookshelfBundle::layout.html.twig" %}
+
+{% block title "Books list" %}
+
+{% block content %}
+    <div class="container">
+        <div class="bookshelf-search">
+            <form class="navbar-form" role="search" method="post" action="{{ path('book_list') }}">
+                <div class="form-group">
+                    <input type="text" name="search" class="form-control" placeholder="Search..." size="80">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+        </div>
+
+        {% if books is not empty %}
+            <table class="table table-bordered table-hover bookshelf-table">
+                <tr>
+                    <th> Название книги </th>
+                    <th> Автор </th>
+                    <th> Category </th>
+                    <th> Edit </th>
+                    <th> Delete </th>
+                </tr>
+                {% for book in books %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('book_view', {'id': book.id}) }}">
+                                {{ book.name }}
+                            </a>
+                        </td>
+                        <td> {{ book.author }}</td>
+                        <td> {{ book.category.name }} </td>
+                        <td align="center" class="col-md-1">
+                            <a href="{{ path('book_edit', {'id': book.id}) }}" class="btn btn-default">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </td>
+                        <td align="center" class="col-md-1">
+                            <a href="{{ path('book_delete', {'id': book.id}) }}" class="btn btn-default">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}
