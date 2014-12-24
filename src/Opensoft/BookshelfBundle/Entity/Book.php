@@ -14,6 +14,7 @@ class Book
     /**
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @var integer
      */
     protected $id;
@@ -48,7 +49,7 @@ class Book
     private $author;
 
     /**
-     * @ORM\ManyToOne(targetEntity="_Category")
+     * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;

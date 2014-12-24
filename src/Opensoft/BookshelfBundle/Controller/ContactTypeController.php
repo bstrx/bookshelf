@@ -15,7 +15,7 @@ use Opensoft\BookshelfBundle\Form\ContactType as ContactFormType;
  *
  * @Route("/contact_type")
  */
-class ContactController extends Controller
+class ContactTypeController extends Controller
 {
 
     /**

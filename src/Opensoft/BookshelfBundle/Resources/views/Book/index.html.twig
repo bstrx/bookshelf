@@ -5,13 +5,17 @@
 {% block content %}
     <div class="container">
         <div class="bookshelf-search">
-            <form class="navbar-form" role="search" method="post" action="{{ path('book_list') }}">
+            <form class="navbar-form" role="search" method="post" action="{{ path('book') }}">
                 <div class="form-group">
                     <input type="text" name="search" class="form-control" placeholder="Search..." size="80">
                 </div>
                 <button type="submit" class="btn btn-default">Search</button>
             </form>
         </div>
+
+        <a href="{{ path('book_new') }}">
+            Create a new entry
+        </a>
 
         {% if books is not empty %}
             <table class="table table-bordered table-hover bookshelf-table">
@@ -25,7 +29,7 @@
                 {% for book in books %}
                     <tr>
                         <td>
-                            <a href="{{ path('book_view', {'id': book.id}) }}">
+                            <a href="{{ path('book_show', {'id': book.id}) }}">
                                 {{ book.name }}
                             </a>
                         </td>
