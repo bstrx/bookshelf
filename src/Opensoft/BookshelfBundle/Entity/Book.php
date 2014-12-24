@@ -48,7 +48,7 @@ class Book
     private $author;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\ManyToOne(targetEntity="_Category")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
