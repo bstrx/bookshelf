@@ -55,16 +55,17 @@ class Book
     private $category;
 
     /**
-     * TODO
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="books")
      * @var array
      */
-    private $users = array();
+    private $users;
 
     /**
      * Constructor
      */
     public function __construct()
     {
+        $this->users = new ArrayCollection();
     }
 
     public function getId()
