@@ -1,18 +1,10 @@
 {% extends '@OpensoftBookshelf/layout.html.twig' %}
 
 {% block content -%}
-    <h1>Book</h1>
+    <h1>{{ entity.name }}</h1>
 
-    <table class="record_properties">
+    <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ entity.name }}</td>
-            </tr>
             <tr>
                 <th>Description</th>
                 <td>{{ entity.description }}</td>
@@ -28,18 +20,15 @@
         </tbody>
     </table>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('book') }}">
-            Обратно к списку
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('book_edit', { 'id': entity.id }) }}">
-            Редактировать
-        </a>
-    </li>
-    <li>{{ form(owned_form) }}</li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+
+    <a href="{{ path('book') }}">
+        Обратно к списку
+    </a>
+
+    <a href="{{ path('book_edit', { 'id': entity.id }) }}">
+        Редактировать
+    </a>
+
+    {{ form(owned_form) }}
+    {{ form(delete_form) }}
 {% endblock %}

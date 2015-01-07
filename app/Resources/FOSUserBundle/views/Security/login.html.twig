@@ -5,21 +5,23 @@
     <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
 {% endif %}
 
-    <form action="{{ path("fos_user_security_check") }}" method="post">
+<form action="{{ path("fos_user_security_check") }}" method="post">
     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-    <label for="username">Логин</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-    <br>
+    <div class="form-group">
+        <label for="username">Логин</label>
+        <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+    </div>
 
-    <label for="password">Пароль</label>
-    <input type="password" id="password" name="_password" required="required" />
-    <br>
+    <div class="form-group">
+        <label for="password">Пароль</label>
+        <input class="form-control" type="password" id="password" name="_password" required="required" />
+    </div>
 
     <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
     <label for="remember_me">Запомнить</label>
     <br>
 
-    <input type="submit" id="_submit" name="_submit" value="Войти" />
+    <input class="btn btn-default" type="submit" id="_submit" name="_submit" value="Войти" />
 </form>
 {% endblock fos_user_content %}
