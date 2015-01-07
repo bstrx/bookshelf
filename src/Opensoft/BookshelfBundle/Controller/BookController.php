@@ -2,6 +2,7 @@
 
 namespace Opensoft\BookshelfBundle\Controller;
 
+use Opensoft\BookshelfBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -49,6 +50,11 @@ class BookController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            /** @var User $user */
+            $user = $this->getUser();
+            $entity->addUser($user);
+            $user->addBook($entity);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();

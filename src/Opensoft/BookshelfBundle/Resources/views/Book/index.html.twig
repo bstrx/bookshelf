@@ -33,10 +33,10 @@
                             </a>
                         </td>
                         <td> {{ book.author }}</td>
-                        <td> {% if book.category is defined %}{{ book.category.name }} {% endif %}</td>
+                        <td> {% if book.category is not empty %}{{ book.category.name }} {% endif %}</td>
                         <td>
                             {% for user in book.users %}
-                                {{ user.id }}
+                                {{ user.username }}
                             {% endfor %}
                         </td>
                     </tr>

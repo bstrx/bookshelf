@@ -56,7 +56,7 @@ class Book
 
     /**
      * @ORM\ManyToMany(targetEntity="User", mappedBy="books")
-     * @var array
+     * @var ArrayCollection|User
      */
     private $users;
 
@@ -164,7 +164,7 @@ class Book
     }
 
     /**
-     * @return array
+     * @return ArrayCollection|User
      */
     public function getUsers()
     {
@@ -172,10 +172,10 @@ class Book
     }
 
     /**
-     * @param array $users
+     * @param User $user
      */
-    public function setUsers($users)
+    public function addUser($user)
     {
-        $this->users = $users;
+        $this->users->add($user);
     }
 }

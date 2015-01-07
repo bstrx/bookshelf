@@ -23,6 +23,7 @@ class User extends BaseUser implements UserInterface
     /**
      * @ORM\ManyToMany(targetEntity="Book", inversedBy="users")
      * @ORM\JoinTable(name="users_books")
+     * @var ArrayCollection|Book
      */
     protected $books;
 
@@ -42,10 +43,10 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @param ArrayCollection|Book $books
+     * @param Book $book
      */
-    public function setBooks(ArrayCollection $books)
+    public function addBook(Book $book)
     {
-        $this->books = $books;
+        $this->books->add($book);
     }
 }
