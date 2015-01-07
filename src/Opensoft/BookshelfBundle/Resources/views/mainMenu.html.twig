@@ -8,8 +8,8 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="{{ path('book') }}">Книги</a></li>
-                        <li><a href="{{ path('category') }}">Categories</a></li>
-                        <li><a href="{{ path('contact_type') }}">Contact types</a></li>
+                        <li><a href="{{ path('category') }}">Категории</a></li>
+                        <li><a href="{{ path('contact_type') }}">Контакты</a></li>
                     </ul>
                 </div>
             </div>
@@ -20,15 +20,16 @@
                 <div class="navbar-collapse collapse navbar-right">
                     <ul class="nav navbar-nav">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
                             <li>
                                 <a href="{{ path('fos_user_security_logout') }}">
-                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                    Выйти
                                 </a>
                             </li>
                         {% else %}
                             <li>
-                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                                <a href="{{ path('fos_user_security_login') }}">
+                                    Войти
+                                </a>
                             </li>
                         {% endif %}
                     </ul>

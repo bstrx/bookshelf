@@ -1,14 +1,14 @@
 {% extends '@OpensoftBookshelf/layout.html.twig' %}
 
 {% block content -%}
-    <h1>Book edit</h1>
+    <h1>Редактировать книгу</h1>
 
     {{ form(edit_form) }}
 
         <ul class="record_actions">
     <li>
         <a href="{{ path('book') }}">
-            Back to the list
+            Обратно к списку
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>
