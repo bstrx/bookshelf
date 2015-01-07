@@ -20,6 +20,7 @@ class BookType extends AbstractType
             ->add('link')
             ->add('author')
             ->add('category')
+            ->add('public')
         ;
     }
     

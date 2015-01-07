@@ -123,10 +123,12 @@ class BookController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
+        $ownedForm = $this->createOwnedForm($id);
 
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'owned_form' => $ownedForm->createView(),
         );
     }
 
@@ -247,6 +249,53 @@ class BookController extends Controller
             ->setAction($this->generateUrl('book_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
+            ->getForm()
+        ;
+    }
+
+    /**
+     * Marks that current user already has the same book.
+     *
+     * @Route("/{id}/owned", name="book_owned")
+     * @Method("POST")
+     */
+    public function alreadyOwnedAction(Request $request, $id)
+    {
+        $form = $this->createOwnedForm($id);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('OpensoftBookshelfBundle:Book')->find($id);
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find Book entity.');
+            }
+
+            /** @var User $user */
+            $user = $this->getUser();
+            $entity->addUser($user);
+            $user->addBook($entity);
+
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('book_show', ['id' => $id]));
+    }
+
+    /**
+     * Creates a form to mark a Book entity as owned by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createOwnedForm($id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('book_owned', array('id' => $id)))
+            ->setMethod('POST')
+            ->add('submit', 'submit', array('label' => 'I already have it'))
             ->getForm()
         ;
     }

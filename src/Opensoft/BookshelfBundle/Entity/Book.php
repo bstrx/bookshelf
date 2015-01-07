@@ -60,6 +60,13 @@ class Book
      */
     private $users;
 
+
+    /**
+     * @ORM\Column(name="is_public", type="boolean")
+     * @var bool
+     */
+    private $public = false;
+
     /**
      * Constructor
      */
@@ -177,5 +184,21 @@ class Book
     public function addUser($user)
     {
         $this->users->add($user);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPublic()
+    {
+        return $this->public;
+    }
+
+    /**
+     * @param bool $public
+     */
+    public function setPublic($public)
+    {
+        $this->public = (bool) $public;
     }
 }
