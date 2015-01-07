@@ -3,7 +3,7 @@
 {% block title "Books list" %}
 
 {% block content %}
-    <div class="container">
+
         <div class="bookshelf-search">
             <form class="navbar-form" role="search" method="post" action="{{ path('book') }}">
                 <div class="form-group">
@@ -43,5 +43,4 @@
                 {% endfor %}
             </table>
         {% endif %}
-    </div>
 {% endblock %}
