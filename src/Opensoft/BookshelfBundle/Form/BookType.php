@@ -15,15 +15,40 @@ class BookType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', ['label' => 'Название'])
-            ->add('link', 'url', ['label' => 'Ссылка'])
+            ->add('name', 'text', [
+                'label' => 'Название',
+                'required' => true
+            ])
             ->add('author', 'text', ['label' => 'Автор'])
             ->add('category', 'entity', [
                 'class' => 'OpensoftBookshelfBundle:Category',
                 'label' => 'Категория'
             ])
-            ->add('description', 'textarea', ['label' => 'Описание'])
-            ->add('public', 'checkbox', ['label' => 'В общем доступе'])
+            ->add('description', 'textarea', [
+                'label' => 'Описание'
+            ])
+            ->add('public', 'checkbox', [
+                'label' => 'В общем доступе',
+                'required' => false
+            ])
+
+            //additional info
+            ->add('pages', 'integer', [
+                'label' => 'Количество страниц',
+                'required' => false
+            ])
+            ->add('link', 'url', [
+                'label' => 'Ссылка',
+                'required' => false
+            ])
+            ->add('edition', 'text', [
+                'label' => 'Издание',
+                'required' => false
+            ])
+            ->add('published', 'date', [
+                'label' => 'Год издания',
+                'required' => false
+            ])
         ;
     }
     

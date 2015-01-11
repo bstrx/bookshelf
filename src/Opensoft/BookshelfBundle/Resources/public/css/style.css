@@ -37,3 +37,8 @@ table.bookshelf-table td:nth-of-type(2n+1) {
 #content {
     margin-top: 60px;
 }
+
+label.required:after {
+    content: '*';
+    color: red;
+}

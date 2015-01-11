@@ -31,10 +31,11 @@ class Book
      */
     private $description;
 
-    /**
-     * TODO
-     */
+    /** TODO
+     * @ORM\Column(name="rating", type="float")
+     * @var integer
     private $rating;
+     */
 
     /**
      * @ORM\Column(name="link", type="string")
@@ -60,6 +61,23 @@ class Book
      */
     private $users;
 
+    /**
+     * @ORM\Column(name="published", type="date", nullable=true)
+     * @var \DateTime
+     */
+    private $published;
+
+    /**
+     * @ORM\Column(name="pages", type="integer", nullable=true)
+     * @var integer
+     */
+    private $pages;
+
+    /**
+     * @ORM\Column(name="edition", type="string", nullable=true)
+     * @var string
+     */
+    private $edition;
 
     /**
      * @ORM\Column(name="is_public", type="boolean")
@@ -200,5 +218,54 @@ class Book
     public function setPublic($public)
     {
         $this->public = (bool) $public;
+    }
+
+
+    /**
+     * @return \DateTime
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param \DateTime $published
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPages()
+    {
+        return $this->pages;
+    }
+
+    /**
+     * @param integer $pages
+     */
+    public function setPages($pages)
+    {
+        $this->pages = $pages;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEdition()
+    {
+        return $this->edition;
+    }
+
+    /**
+     * @param string $edition
+     */
+    public function setEdition($edition)
+    {
+        $this->edition = $edition;
     }
 }
