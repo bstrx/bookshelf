@@ -15,12 +15,15 @@ class BookType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('link')
-            ->add('author')
-            ->add('category')
-            ->add('public')
+            ->add('name', 'text', ['label' => 'Название'])
+            ->add('link', 'url', ['label' => 'Ссылка'])
+            ->add('author', 'text', ['label' => 'Автор'])
+            ->add('category', 'entity', [
+                'class' => 'OpensoftBookshelfBundle:Category',
+                'label' => 'Категория'
+            ])
+            ->add('description', 'textarea', ['label' => 'Описание'])
+            ->add('public', 'checkbox', ['label' => 'В общем доступе'])
         ;
     }
     
