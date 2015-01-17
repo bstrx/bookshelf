@@ -1,65 +1,13 @@
 {% extends '@OpensoftBookshelf/layout.html.twig' %}
 
-{% form_theme edit_form _self %}
-
-{% block form_row %}
-    <div class='form-group'>
-        {{- form_label(form) -}}
-        {{- form_errors(form) -}}
-        {{- form_widget(form, { 'attr': { 'class': 'form-control' }}) -}}
-    </div>
-{% endblock form_row %}
+{% form_theme edit_form 'OpensoftBookshelfBundle:Book:bookFormTheme.html.twig' %}
 
 {% block content -%}
     <h1>Редактировать книгу</h1>
 
-    <div class="col-xs-5">
-        {{ form_start(edit_form) }}
-        {{ form_row(edit_form.name) }}
-        {{ form_row(edit_form.author) }}
-        {{ form_row(edit_form.category) }}
-        {{ form_row(edit_form.description) }}
+    {% include 'OpensoftBookshelfBundle:Book:editForm.html.twig' with {'edit_form': edit_form} %}
 
-        {# public field #}
-        <div class='form-group'>
-            {{ form_widget(edit_form.public) }}
-            {{ form_label(edit_form.public) }}
-            {{ form_errors(edit_form.public) }}
-        </div>
+    <div class="clearfix"></div>
+    {{ form(delete_form) }}
 
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingOne">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Дополнительная информация
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="panel-body">
-                        {{ form_row(edit_form.pages) }}
-                        {{ form_row(edit_form.link) }}
-                        {{ form_row(edit_form.edition) }}
-
-                        {# published field #}
-                        <div class='form-group'>
-                            {{ form_label(edit_form.published) }}
-                            {{ form_errors(edit_form.published) }}
-                            {{ form_widget(edit_form.published) }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {{ form_end(edit_form) }}
-
-        <a href="{{ path('book') }}">Обратно к списку</a>
-        {{ form(delete_form) }}
-    </div>
-
-    <script type="application/javascript">
-        $('.collapse').collapse();;
-    </script>
 {% endblock %}
